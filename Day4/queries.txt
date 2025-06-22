@@ -1,0 +1,24 @@
+select product_name , unit_price from products order by unit_price desc limit 5;
+
+
+select product_name from products where units_in_stock = 0;
+
+
+select count(title_of_courtesy) as c, title_of_courtesy from employees group by title_of_courtesy having c > 1;
+
+
+select avg(freight), customer_id from orders group by customer_id;
+
+
+
+select max(unit_price) from products where unit_price not in (select max(unit_price) from products);
+
+
+
+select unit_price , product_name from products 
+where unit_price >= (select avg(unit_price) from products);
+
+
+select supplier_id, product_name, unit_price, Rank() over (order by unit_price desc) as ranking from products;
+
+select first_name , count(first_name) as c from employees group by first_name having c > 1;
