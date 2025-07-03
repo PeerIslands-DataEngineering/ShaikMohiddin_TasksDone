@@ -28,11 +28,8 @@ parse_money_udf = udf(parse_money, DoubleType())
 
 
 df = spark.read.option("header", True).csv("C:/Users/HP/Downloads/startups_100_rows.csv")
-
 df = df.withColumn("ARR", parse_money_udf(col("ARR")))
 df = df.withColumn("Valuation", parse_money_udf(col("Valuation")))
-
-
 df = df.withColumn("G2 Rating", col("G2 Rating").cast("double"))
 df = df.withColumn("Founded Year", col("Founded Year").cast("int"))
 
