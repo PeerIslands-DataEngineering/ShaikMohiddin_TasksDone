@@ -1,0 +1,14 @@
+from pyspark.sql import SparkSession
+
+spark = SparkSession.builder.appName("DataFrameExample").getOrCreate()
+
+data = [("Alice", 25), ("Bob", 30), ("Charlie", 28)]
+columns = ["Name", "Age"]
+
+df = spark.createDataFrame(data, columns)
+df.show()
+df.printSchema()
+df.select("Name", "age").show()
+df.filter(df.Age > 25).show()
+df.groupBy("Age").count().show()
+df.orderBy("Age").show()
